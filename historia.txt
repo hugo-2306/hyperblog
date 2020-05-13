@@ -1,1 +1,2 @@
-Esta es la historia de Hugo Rodríguez
+Aprendiendo git y git Hub
+Historia de hugo rodríguez
