@@ -72,4 +72,19 @@ Las ramas son la forma de hacer cambios en nuestro proyecto sin afectar el flujo
 
 La cabecera o HEAD representan la rama y el commit de esa rama donde estamos trabajando. Por defecto, esta cabecera aparecerá en el último commit de nuestra rama principal. Pero podemos cambiarlo al crear una rama (git branch rama, git checkout -b rama) o movernos en el tiempo a cualquier otro commit de cualquier otra rama con los comandos (git reset id-commit, git checkout rama-o-id-commit).
 
-- **git commit -am:** Este comando automáticamente hace el git add 
+- **git commit -am:** Este comando automáticamente hace el **git add** de los cambios pero solo funciona con archivos a los que ya les habiamos hecho **git add** previamente.
+_git commit -am "mensaje del commit"_
+_git commit -a_ (abre el editor de texto para agregar el mensaje al commit)
+
+- **git branch:** Con este comando creamos la rama
+_git branch nombreDeLaRama_ ej git branch cabecera
+    también podemos saber en que rama estamos _git branch_
+
+-**git checkout** Con este comando nos cambiamos de la rama master a la rama que queremos y viceversa.
+_git checkout nombreDeLaRama_ ej git chekout cabecera 
+El bash cambia de (master) a (nombreDeLaRama)
+Con Git status puedes revisar la rama en la que te encuentras trabajando.
+
+-**git merge** Con este comando fusionamos la rama alterna y la rama master. Lo debemos hacer desde master. Este comando es un commit por lo que también hay que agregarle un mensaje.
+
+Una vez fusionados si usamos el comando _git status_ podremos ver los commits de master y el último commit del branch que fusionamos y el commit más reciente será la fusión de estos dos. Merge: 43b23b 535n3i
