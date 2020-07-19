@@ -27,12 +27,12 @@ Recuerda que hay un caso muy raro donde los archivos tienen dos estados al mismo
   - git rm --force: Elimina los archivos de Git y del disco duro. Git guarda el registro de la existencia de los archivos, por lo que podremos recuperarlos si es necesario (pero debemos usar comandos más avanzados).
 
 - **git config** Muestra las opciones de configuración
-    - git config --list: Ver la configuración por defecto de Git
-    - git config --list --show-origin: Ubicación de las configuraciones
-    - git config --global user.name "User Name": Configura el usuario de git
-    - git config --global user.email "User email": Configura el correo del usuario de git
+  - git config --list: Ver la configuración por defecto de Git
+  - git config --list --show-origin: Ubicación de las configuraciones
+  - git config --global user.name "User Name": Configura el usuario de git
+  - git config --global user.email "User email": Configura el correo del usuario de git
 
-- **git log** Muestra los cambios en el archivo _git log fileName_ 
+- **git log** Muestra los cambios en el archivo _git log fileName_
                 git log --stat: cambios especificos en los archivos a partir del comit.
 
 - **git show** Muestra los cambios que han existido en un archivo _git show filename_
@@ -47,10 +47,9 @@ que es el que tiene todos los cambios.
     -git reset --hard: _todo_ vuelve al estado anterior (cuidado)
     -git reset --soft: volvemos a la version anterior pero lo que esté en staging sigue en staging.
 
-- **git checkout** Nos permite revisar una version anterior de algún archivo ej.                _git checkout a132(version)...224 nombrearchivo.txt_  En este momento el archivo vuelve a la versión solicitada y si se hace un commit se perdería la información de la versión más reciente, para volver a la versión mas reciente ejecutamos el comando _git chekcout master nombrearchivo.txt_ 
+- **git checkout** Nos permite revisar una version anterior de algún archivo ej.                _git checkout a132(version)...224 nombrearchivo.txt_  En este momento el archivo vuelve a la versión solicitada y si se hace un commit se perdería la información de la versión más reciente, para volver a la versión mas reciente ejecutamos el comando _git chekcout master nombrearchivo.txt_
 
-
-##Flujo de trabajo básico con un repositorio remoto:
+## Flujo de trabajo básico con un repositorio remoto
 
 Por ahora, nuestro proyecto vive únicamente en nuestra computadora. Esto significa que no hay forma de que otros miembros del equipo trabajen en él.
 
@@ -66,7 +65,7 @@ Esto significa que debes aprender algunos nuevos comandos:
 - **git merge:** También usamos el comando git fetch con servidores remotos. Lo necesitamos para combinar los últimos cambios del servidor remoto y nuestro directorio de trabajo.
 - **git pull:** Básicamente, git fetch y git merge al mismo tiempo.
 
-##Introducción a las ramas o branches de Git
+## Introducción a las ramas o branches de Git
 
 Las ramas son la forma de hacer cambios en nuestro proyecto sin afectar el flujo de trabajo de la rama principal. Esto porque queremos trabajar una parte muy específica de la aplicación o simplemente experimentar.
 
@@ -81,7 +80,7 @@ _git branch nombreDeLaRama_ ej git branch cabecera
     también podemos saber en que rama estamos _git branch_
 
 -**git checkout** Con este comando nos cambiamos de la rama master a la rama que queremos y viceversa.
-_git checkout nombreDeLaRama_ ej git chekout cabecera 
+_git checkout nombreDeLaRama_ ej git chekout cabecera
 El bash cambia de (master) a (nombreDeLaRama)
 Con Git status puedes revisar la rama en la que te encuentras trabajando.
 
@@ -89,5 +88,33 @@ Con Git status puedes revisar la rama en la que te encuentras trabajando.
 
 Una vez fusionados si usamos el comando _git status_ podremos ver los commits de master y el último commit del branch que fusionamos y el commit más reciente será la fusión de estos dos. Merge: 43b23b 535n3i
 
-##Solución de Conflictos al hacer un merge.
+## Solución de Conflictos al hacer un merge
+
 Los archivos con conflictos por el comando _git merge_ entran en un nuevo estado que conocemos como Unmerged. Funcionan muy parecido a los archivos en estado Unstaged, algo así como un estado intermedio entre Untracked y Unstaged, solo debemos ejecutar git add para pasarlos al área de staging y git commit para aplicar los cambios en el repositorio.
+
+## Uso de GitHub
+
+_GitHub_ es una plataforma que nos permite guardar repositorios de Git que podemos usar como servidores remotos y ejecutar algunos comandos de forma visual e interactiva (sin necesidad de la consola de comandos).
+
+Luego de crear nuestra cuenta, podemos crear o importar repositorios, crear organizaciones y proyectos de trabajo, descubrir repositorios de otras personas, contribuir a esos proyectos, dar estrellas y muchas otras cosas.
+
+El *README.md* es el archivo que veremos por defecto al entrar a un repositorio. Es una muy buena práctica configurarlo para describir el proyecto, los requerimientos y las instrucciones que debemos seguir para contribuir correctamente.
+
+Para clonar un repositorio desde GitHub (o cualquier otro servidor remoto) debemos copiar la URL (por ahora, usando HTTPS) y ejecutar el comando git clone + la URL que acabamos de copiar. Esto descargara la versión de nuestro proyecto que se encuentra en GitHub.
+
+Sin embargo, esto solo funciona para las personas que quieren empezar a contribuir en el proyecto. Si queremos conectar el repositorio de GitHub con nuestro repositorio local, el que creamos con git init, debemos ejecutar las siguientes instrucciones:
+
+- Primero: Guardar la URL del repositorio de GitHub con el nombre de origin:
+
+    > _git remote add origin URL_
+
+- Segundo: Verificar que la URL se haya guardado correctamente:
+
+    >_git remote_ _git remote -v_
+
+- Tercero: Traer la versión del repositorio remoto y hacer merge para crear un commit con los archivos de ambas partes. Podemos usar git fetch y git mergeo solo el git pull con el flag _--allow-unrelated-histories_:
+
+    >_git pull origin master_ _--allow-unrelated-histories_
+
+- Por último, ahora sí podemos hacer git push para guardar los cambios de nuestro repositorio local en GitHub:
+    >_git push origin master_
