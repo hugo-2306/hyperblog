@@ -88,3 +88,6 @@ Con Git status puedes revisar la rama en la que te encuentras trabajando.
 -**git merge** Con este comando fusionamos la rama alterna y la rama master. Lo debemos hacer desde master. Este comando es un commit por lo que también hay que agregarle un mensaje.
 
 Una vez fusionados si usamos el comando _git status_ podremos ver los commits de master y el último commit del branch que fusionamos y el commit más reciente será la fusión de estos dos. Merge: 43b23b 535n3i
+
+##Solución de Conflictos al hacer un merge.
+Los archivos con conflictos por el comando _git merge_ entran en un nuevo estado que conocemos como Unmerged. Funcionan muy parecido a los archivos en estado Unstaged, algo así como un estado intermedio entre Untracked y Unstaged, solo debemos ejecutar git add para pasarlos al área de staging y git commit para aplicar los cambios en el repositorio.
