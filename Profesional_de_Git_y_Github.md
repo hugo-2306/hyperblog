@@ -1,8 +1,44 @@
 # Curso Profesional de Git y Github
 
-Un sistema de control de versiones como Git nos ayuda a guardar el historial de cambios y crecimiento de los archivos de nuestro proyecto.
+¿Qué es un sistema de control de versiones?
+
+El *SCV* o *VCS* (por sus siglas en inglés) es un sistema que registra los cambios realizados sobre un archivo o conjunto de archivos a lo largo del tiempo, de modo que puedas llevar el historial del ciclo de vida de un proyecto, comparar cambios a lo largo del tiempo, ver quién los realizó o revertir el proyecto entero a un estado anterior.
+
+Cualquier tipo de archivo que se encuentre en un ordenador puede ponerse bajo control de versiones.
+
+## ¿Que es GIT?
+
+Git es un sistema de control de versiones distribuido, diseñado por Linus Torvalds. Está pensando en la eficiencia y la confiabilidad del mantenimiento de versiones de aplicaciones cuando estas tienen un gran número de archivos de código fuente. Git está optimizado para guardar todos estos cambios de forma atómica e incremental.
+
+Se obtiene su mayor eficiencia con archivos de texto plano, ya que con archivos binarios no puede guardar solo los cambios, sino que debe volver a grabar el archivo completo ante cada modificación, por mínima que sea, lo que hace que incremente demasiado el tamaño del repositorio.
+
+“Guardar archivos binarios en el repositorio de git es una mala práctica, únicamente deberían guardarse archivos pequeños (como logos) que no sufran casi modificaciones durante la vida del proyecto. Los binarios deben guardarse en un CDN”.
 
 En realidad, los cambios y diferencias entre las versiones de nuestros proyectos pueden tener similitudes, algunas veces los cambios pueden ser solo una palabra o una parte específica de un archivo específico. Git está optimizado para guardar todos estos cambios de forma atómica e incremental, o sea, aplicando cambios sobre los últimos cambios, estos sobre los cambios anteriores y así hasta el inicio de nuestro proyecto.
+
+¿Qué es Github?
+
+Es una plataforma de desarrollo colaborativo para alojar proyectos utilizando el sistema de control de versiones Git. Se emplea principalmente para la creación de código fuente de programas de computadora.
+
+Github puede considerarse como la red social de código para los programadores y en muchos casos es visto como tu curriculum vitae, pues aquí guardas tu portafolio de proyectos de programación.
+
+## Instalando Git en Linux
+
+Cada distribución de Linux tiene un comando especial para instalar herramientas y actualizar el sistema. Aquí veremos un ejemplo de los comandos para instalar Git en Linux
+
+sudo apt-get update
+sudo apt install git
+git --version
+
+Sudo significa Super User DO. Se utiliza para correr comandos con credenciales de super usuario (sin restricciones).
+
+En las distribuciones derivadas de Debian (como Ubuntu) el comando especial es apt-get, en Red Hat es yum y en ArchLinux es pacman. Cada distribución tiene su comando especial y debes averiguar cómo funciona para poder instalar Git.
+
+Antes de hacer la instalación, debemos hacer una actualización del sistema. En nuestro caso, los comandos para hacerlo son sudo apt-get update y sudo apt-get upgrade.
+
+Con el sistema actualizado, ahora sí podemos instalar Git y, en este caso, el comando para hacerlo es sudo apt-get install git. También puedes verificar que Git fue instalado correctamente con el comando git --version
+
+## Comandos básicos de git:
 
 El comando para iniciar nuestro repositorio, o sea, indicarle a Git que queremos usar su sistema de control de versiones en nuestro proyecto, es _git init_.
 
@@ -12,16 +48,22 @@ El comando para almacenar definitivamente todos los cambios que por ahora viven 
 
 Por último, si queremos mandar nuestros commits a un servidor remoto, un lugar donde todos podamos conectar nuestros proyectos, usamos el comando _git push_.
 
-Comandos básicos de git:
-
 git init: inicializa un repositorio de GIT en la carpeta donde se ejecute el comando.
+
 git add: añade los archivos especificados al área de preparación (staging).
+
 git commit -m “commit description”: confirma los archivos que se encuentran en el área de preparación y los agrega al repositorio.
+
 git commit -am “commit description”: añade al staging area y hace un commit mediante un solo comando. (No funciona con archivos nuevos)
+
 git status: ofrece una descripción del estado de los archivos (untracked, ready to commit, nothing to commit).
+
 git rm (. -r, filename) (–cached): remueve los archivos del index.
+
 git config --global user.email tu@email.com: configura un email.
+
 git config --global user.name <Nombre como se verá en los commits>: configura un nombre.
+
 git config --list: lista las configuraciones.
 
 ## ¿Qué es staging, repositorios y cuál es el ciclo básico de trabajo en GitHub?
