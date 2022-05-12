@@ -60,7 +60,7 @@ git status: ofrece una descripción del estado de los archivos (untracked, ready
 
 git rm (. -r, filename) (–cached): remueve los archivos del index.
 
-git config --global user.email tu@email.com: configura un email.
+git config --global user.email.tu@email.com: configura un email.
 
 git config --global user.name <Nombre como se verá en los commits>: configura un nombre.
 
@@ -184,3 +184,45 @@ Sin embargo, esto solo funciona para las personas que quieren empezar a contribu
 
 - Por último, ahora sí podemos hacer git push para guardar los cambios de nuestro repositorio local en GitHub:
     >_git push origin master_
+
+## Configura tus llaves SSH en local
+
+Revisar que el usuario tenga la configuración correta:
+
+- _git config -l_
+
+El correo debe ser el correcto, el nombre de usuario no importa tanto.
+
+Las llaves SSH se configuran por usario, no por proyecto o repositorio.
+
+Desde el home de mi usuario vamos a crear las llaves SSH usando la terminal.
+
+_ssh-keygen -t rsa -b 4096 -C "email.usuario@email.com"_
+
+Con el parámetro -t indicamos el algoritmo que vamos a usar, en este caso es RSA.
+
+El parámetro -b seguido de 4096 indica la complegidad de la llave desde una perspectiva matemática.
+
+El parámetro -C indica a que correo electrónico va a estar conectada la llave.
+
+Una vez que terminamos de escribir el correo podemos darle enter y nos va a preguntar dónde queremos guardar la llave, podemos usar la ruta que nos sugiere que es lo más recomendable.
+
+Después nos va a preguntar si queremos agregar un passphrase, ósea una contraseña con espacios. Es una contraseña adicional de texto que se le puede agregar a las llaves. Lo recomendable es agregar una, sin embargo este paso se puede omitir.
+
+El siguiente paso mostará la ruta donde se guardaron la llave pública y privada y nos mostrará un key fingerprint para indicarnos que la llave esta creada y algo llamado random art image que también sirve para compartir la llave.
+
+Una vez que tenemos la llave debemos asegurarnos que el servidor de llaves SSH esté prendido. Básicamente es un programa corriendo que revisa que las llaves estén listas y que las conecte para hacer la conexión doble cuando nos conectemos a un servidor remoto o a github.
+
+_eval $(ssh-agent -s)_
+
+El resultado debe ser el siguiente:
+
+Agent pid 9898
+
+Dónde agent significa que el servidor SSH está corriendo, pid significa process ID y a su lado está el id del proceso. El número de PID puede variar.
+
+
+
+
+
+
