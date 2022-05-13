@@ -187,7 +187,7 @@ Sin embargo, esto solo funciona para las personas que quieren empezar a contribu
 
 ## Configura tus llaves SSH en local
 
-Revisar que el usuario tenga la configuración correta:
+Revisar que el usuario tenga la configuración correcta:
 
 - _git config -l_
 
@@ -221,8 +221,16 @@ Agent pid 9898
 
 Dónde agent significa que el servidor SSH está corriendo, pid significa process ID y a su lado está el id del proceso. El número de PID puede variar.
 
+Después de creada tenemos que agregarla al servidor.
 
+~ la tilde de la ñ funciona como una variable para indicar el home del usuario.
 
+para agregar la llave usamos el siguiente comando:
 
+_ssh-add ~/.ssh/id_rsa_
 
+Estamos agregando la llave privada, al darle enter nos debe mostrar un mensaje que diga Identity added seguido de la ruta y el correo del usuario.
 
+![image](https://user-images.githubusercontent.com/35672370/168206190-669b260f-1624-4028-af26-ebf3190e58d2.png)
+
+El procedimiento en Mac es diferente.
