@@ -38,15 +38,15 @@ Antes de hacer la instalación, debemos hacer una actualización del sistema. En
 
 Con el sistema actualizado, ahora sí podemos instalar Git y, en este caso, el comando para hacerlo es sudo apt-get install git. También puedes verificar que Git fue instalado correctamente con el comando git --version
 
-## Comandos básicos de git:
+## Comandos básicos de git
 
-El comando para iniciar nuestro repositorio, o sea, indicarle a Git que queremos usar su sistema de control de versiones en nuestro proyecto, es _git init_.
+El comando para iniciar nuestro repositorio, o sea, indicarle a Git que queremos usar su sistema de control de versiones en nuestro proyecto, es *git init*.
 
-El comando para que nuestro repositorio sepa de la existencia de un archivo o sus últimos cambios es _git add_. Este comando no almacena las actualizaciones de forma definitiva, únicamente las guarda en algo que conocemos como “Staging Area” (área de montaje o ensayo).
+El comando para que nuestro repositorio sepa de la existencia de un archivo o sus últimos cambios es *git add*. Este comando no almacena las actualizaciones de forma definitiva, únicamente las guarda en algo que conocemos como “Staging Area” (área de montaje o ensayo).
 
-El comando para almacenar definitivamente todos los cambios que por ahora viven en el staging area es _git commit_. También podemos guardar un mensaje para recordar muy bien qué cambios hicimos en este commit con el argumento -m "Mensaje del commit".
+El comando para almacenar definitivamente todos los cambios que por ahora viven en el staging area es *git commit*. También podemos guardar un mensaje para recordar muy bien qué cambios hicimos en este commit con el argumento -m "Mensaje del commit".
 
-Por último, si queremos mandar nuestros commits a un servidor remoto, un lugar donde todos podamos conectar nuestros proyectos, usamos el comando _git push_.
+Por último, si queremos mandar nuestros commits a un servidor remoto, un lugar donde todos podamos conectar nuestros proyectos, usamos el comando *git push*.
 
 git init: inicializa un repositorio de GIT en la carpeta donde se ejecute el comando.
 
@@ -70,22 +70,22 @@ git config --list: lista las configuraciones.
 
 Para iniciar un repositorio, o sea, activar el sistema de control de versiones de Git en tu proyecto, solo debes ejecutar el comando: git init (git espacio init) desde la terminal situado en el directorio de tu proyecto.
 
-Este comando se encargará de dos cosas: primero, crear una carpeta .git donde se guardará toda la base de datos con _cambios atómicos_ de nuestro proyecto; y segundo, crear un área en la memoria RAM, que conocemos como Staging, que guardará temporalmente nuestros archivos (cuando ejecutemos un comando especial para eso) y nos permitirá, más adelante, guardar estos cambios en el repositorio (también con un comando especial).
+Este comando se encargará de dos cosas: primero, crear una carpeta .git donde se guardará toda la base de datos con *cambios atómicos* de nuestro proyecto; y segundo, crear un área en la memoria RAM, que conocemos como Staging, que guardará temporalmente nuestros archivos (cuando ejecutemos un comando especial para eso) y nos permitirá, más adelante, guardar estos cambios en el repositorio (también con un comando especial).
 
 **Ciclo de vida o estados de los archivos en Git:**
 
 Cuando trabajamos con Git, nuestros archivos pueden vivir y moverse entre 4 diferentes estados (cuando trabajamos con repositorios remotos pueden ser más estados pero lo estudiaremos más adelante):
 
-- **Archivos Tracked:** Son los archivos que viven dentro de Git, no tienen cambios pendientes y sus últimas actualizaciones han sido guardadas en el repositorio gracias a los comandos _git add_ y _git commit_.
-- **Archivos Staged:** Son archivos en Staging. Viven dentro de Git y hay registro de ellos porque han sido afectados por el comando _git add_, aunque no sus últimos cambios. Git ya sabe de la existencia de estos últimos cambios pero todavía no han sido guardados definitivamente en el repositorio porque _falta ejecutar_ el comando _git commit_.
-- **Archivos Unstaged:** Entiendelos como archivos “Tracked pero Unstaged”. Son archivos que viven dentro de Git pero _no_ han sido _afectados_ por el comando _git add_ _ni_ mucho menos por _git commit_. Git tiene un registro de estos archivos pero está desactualizado, sus últimas versiones solo están guardadas en el disco duro.
-- **Archivos Untracked:** Son archivos que _NO viven dentro de Git_, solo en el disco duro. Nunca han sido afectados por git add, así que Git no tiene registros de su existencia.
+- **Archivos Tracked:** Son los archivos que viven dentro de Git, no tienen cambios pendientes y sus últimas actualizaciones han sido guardadas en el repositorio gracias a los comandos *git add* y *git commit*.
+- **Archivos Staged:** Son archivos en Staging. Viven dentro de Git y hay registro de ellos porque han sido afectados por el comando *git add*, aunque no sus últimos cambios. Git ya sabe de la existencia de estos últimos cambios pero todavía no han sido guardados definitivamente en el repositorio porque *falta ejecutar* el comando *git commit*.
+- **Archivos Unstaged:** Entiendelos como archivos “Tracked pero Unstaged”. Son archivos que viven dentro de Git pero *no* han sido *afectados* por el comando *git add* *ni* mucho menos por *git commit*. Git tiene un registro de estos archivos pero está desactualizado, sus últimas versiones solo están guardadas en el disco duro.
+- **Archivos Untracked:** Son archivos que *NO viven dentro de Git*, solo en el disco duro. Nunca han sido afectados por git add, así que Git no tiene registros de su existencia.
 Recuerda que hay un caso muy raro donde los archivos tienen dos estados al mismo tiempo: Staged y Untracked. Esto pasa cuando guardas los cambios de un archivo en el área de Staging (con el comando git add) pero, antes de hacer commit para guardar los cambios en el repositorio, haces nuevos cambios que todavía no han sido guardados en el área de Staging (en realidad, todo sigue funcionando igual pero es un poco divertido).
 
 **Comandos para mover archivos entre los estados de Git:**
 
-- ****git status:** Nos permite ver el estado de todos nuestros archivos y carpetas.
-- **git add:** Nos ayuda a mover archivos del Untracked o Unstaged al estado Staged. Podemos usar git nombre-del-archivo-o-carpeta para añadir archivos y carpetas individuales o git add -A para mover todos los archivos de nuestro proyecto (tanto Untrackeds como unstageds). Se puede usar el comando git add . para agregar el archivo modificado en el directorio actua.l
+- **git status:** Nos permite ver el estado de todos nuestros archivos y carpetas.
+- **git add:** Nos ayuda a mover archivos del Untracked o Unstaged al estado Staged. Podemos usar git nombre-del-archivo-o-carpeta para añadir archivos y carpetas individuales o git add -A para mover todos los archivos de nuestro proyecto (tanto Untrackeds como unstageds). Se puede usar el comando *git add .* para agregar el archivo modificado en el directorio actual
 - **git reset HEAD:** Nos ayuda a sacar archivos del estado Staged para devolverlos a su estado anterior. Si los archivos venían de Unstaged, vuelven allí. Y lo mismo se venían de Untracked.
 - **git commit:** Nos ayuda a mover archivos de Unstaged a Staged. Esta es una ocasión especial, los archivos han sido guardado o actualizados en el repositorio. Git nos pedirá que dejemos un mensaje para recordar los cambios que hicimos y podemos usar el argumento -m para escribirlo (git commit -m "mensaje").
 - **git rm:** Este comando necesita alguno de los siguientes argumentos para poder ejecutarse correctamente:
@@ -98,22 +98,22 @@ Recuerda que hay un caso muy raro donde los archivos tienen dos estados al mismo
   - git config --global user.name "User Name": Configura el usuario de git
   - git config --global user.email "User email": Configura el correo del usuario de git
 
-- **git log** Muestra los cambios en el archivo _git log fileName_
+- **git log** Muestra los cambios en el archivo *git log fileName*
                 git log --stat: cambios especificos en los archivos a partir del comit.
 
-- **git show** Muestra los cambios que han existido en un archivo _git show filename_
-- **git diff** Compara una version vs otra del archivo _git diff version1 version2_ (para ver las versiones primero ejecutar _git log_)
+- **git show** Muestra los cambios que han existido en un archivo *git show filename*
+- **git diff** Compara una version vs otra del archivo *git diff version1 version2* (para ver las versiones primero ejecutar *git log*)
                 También funciona para comparar cambios hechos a un archivo antes de hacer git add
 **Volver en el tiempo en nuestro repositorio utilizando branches y checkout**
 
 Recordemos que tenemos directorio de trabajo, un stagging y un repositorio
 que es el que tiene todos los cambios.
 
-- **git reset** Nos permite volver a una verison anterior si le colocamos enfrente la versión aterior a la que queremos volver ej. _git reset 897e...873_
-    -git reset --hard: _todo_ vuelve al estado anterior (cuidado)
+- **git reset** Nos permite volver a una verison anterior si le colocamos enfrente la versión aterior a la que queremos volver ej. *git reset 897e...873*
+    -git reset --hard: *todo* vuelve al estado anterior (cuidado)
     -git reset --soft: volvemos a la version anterior pero lo que esté en staging sigue en staging.
 
-- **git checkout** Nos permite revisar una version anterior de algún archivo ej.                _git checkout a132(version)...224 nombrearchivo.txt_  En este momento el archivo vuelve a la versión solicitada y si se hace un commit se perdería la información de la versión más reciente, para volver a la versión mas reciente ejecutamos el comando _git chekcout master nombrearchivo.txt_
+- **git checkout** Nos permite revisar una version anterior de algún archivo ej.                *git checkout a132(version)...224 nombrearchivo.txt*  En este momento el archivo vuelve a la versión solicitada y si se hace un commit se perdería la información de la versión más reciente, para volver a la versión mas reciente ejecutamos el comando *git chekcout master nombrearchivo.txt*
 
 ## Flujo de trabajo básico con un repositorio remoto
 
@@ -138,29 +138,29 @@ Las ramas son la forma de hacer cambios en nuestro proyecto sin afectar el flujo
 La cabecera o HEAD representan la rama y el commit de esa rama donde estamos trabajando. Por defecto, esta cabecera aparecerá en el último commit de nuestra rama principal. Pero podemos cambiarlo al crear una rama (git branch rama, git checkout -b rama) o movernos en el tiempo a cualquier otro commit de cualquier otra rama con los comandos (git reset id-commit, git checkout rama-o-id-commit).
 
 - **git commit -am:** Este comando automáticamente hace el **git add** de los cambios pero solo funciona con archivos a los que ya les habiamos hecho **git add** previamente.
-_git commit -am "mensaje del commit"_
-_git commit -a_ (abre el editor de texto para agregar el mensaje al commit)
+*git commit -am "mensaje del commit"*
+*git commit -a* (abre el editor de texto para agregar el mensaje al commit)
 
 - **git branch:** Con este comando creamos la rama
-_git branch nombreDeLaRama_ ej git branch cabecera
-    también podemos saber en que rama estamos _git branch_
+*git branch nombreDeLaRama* ej git branch cabecera
+    también podemos saber en que rama estamos *git branch*
 
 -**git checkout** Con este comando nos cambiamos de la rama master a la rama que queremos y viceversa.
-_git checkout nombreDeLaRama_ ej git chekout cabecera
+*git checkout nombreDeLaRama* ej git chekout cabecera
 El bash cambia de (master) a (nombreDeLaRama)
 Con Git status puedes revisar la rama en la que te encuentras trabajando.
 
 -**git merge** Con este comando fusionamos la rama alterna y la rama master. Lo debemos hacer desde master. Este comando es un commit por lo que también hay que agregarle un mensaje.
 
-Una vez fusionados si usamos el comando _git status_ podremos ver los commits de master y el último commit del branch que fusionamos y el commit más reciente será la fusión de estos dos. Merge: 43b23b 535n3i
+Una vez fusionados si usamos el comando *git status* podremos ver los commits de master y el último commit del branch que fusionamos y el commit más reciente será la fusión de estos dos. Merge: 43b23b 535n3i
 
 ## Solución de Conflictos al hacer un merge
 
-Los archivos con conflictos por el comando _git merge_ entran en un nuevo estado que conocemos como Unmerged. Funcionan muy parecido a los archivos en estado Unstaged, algo así como un estado intermedio entre Untracked y Unstaged, solo debemos ejecutar git add para pasarlos al área de staging y git commit para aplicar los cambios en el repositorio.
+Los archivos con conflictos por el comando *git merge* entran en un nuevo estado que conocemos como Unmerged. Funcionan muy parecido a los archivos en estado Unstaged, algo así como un estado intermedio entre Untracked y Unstaged, solo debemos ejecutar git add para pasarlos al área de staging y git commit para aplicar los cambios en el repositorio.
 
 ## Uso de GitHub
 
-_GitHub_ es una plataforma que nos permite guardar repositorios de Git que podemos usar como servidores remotos y ejecutar algunos comandos de forma visual e interactiva (sin necesidad de la consola de comandos).
+*GitHub* es una plataforma que nos permite guardar repositorios de Git que podemos usar como servidores remotos y ejecutar algunos comandos de forma visual e interactiva (sin necesidad de la consola de comandos).
 
 Luego de crear nuestra cuenta, podemos crear o importar repositorios, crear organizaciones y proyectos de trabajo, descubrir repositorios de otras personas, contribuir a esos proyectos, dar estrellas y muchas otras cosas.
 
@@ -172,24 +172,24 @@ Sin embargo, esto solo funciona para las personas que quieren empezar a contribu
 
 - Primero: Guardar la URL del repositorio de GitHub con el nombre de origin:
 
-    > _git remote add origin URL_
+    > *git remote add origin URL*
 
 - Segundo: Verificar que la URL se haya guardado correctamente:
 
-    >_git remote_ _git remote -v_
+    >*git remote* *git remote -v*
 
-- Tercero: Traer la versión del repositorio remoto y hacer merge para crear un commit con los archivos de ambas partes. Podemos usar git fetch y git mergeo solo el git pull con el flag _--allow-unrelated-histories_:
+- Tercero: Traer la versión del repositorio remoto y hacer merge para crear un commit con los archivos de ambas partes. Podemos usar git fetch y git mergeo solo el git pull con el flag *--allow-unrelated-histories*:
 
-    >_git pull origin master_ _--allow-unrelated-histories_
+    >*git pull origin master* *--allow-unrelated-histories*
 
 - Por último, ahora sí podemos hacer git push para guardar los cambios de nuestro repositorio local en GitHub:
-    >_git push origin master_
+    >*git push origin master*
 
 ## Configura tus llaves SSH en local
 
 Revisar que el usuario tenga la configuración correcta:
 
-- _git config -l_
+- *git config -l*
 
 El correo debe ser el correcto, el nombre de usuario no importa tanto.
 
@@ -197,7 +197,7 @@ Las llaves SSH se configuran por usario, no por proyecto o repositorio.
 
 Desde el home de mi usuario vamos a crear las llaves SSH usando la terminal.
 
-_ssh-keygen -t rsa -b 4096 -C "email.usuario@email.com"_
+*ssh-keygen -t rsa -b 4096 -C "email.usuario@email.com"*
 
 Con el parámetro -t indicamos el algoritmo que vamos a usar, en este caso es RSA.
 
@@ -213,7 +213,7 @@ El siguiente paso mostará la ruta donde se guardaron la llave pública y privad
 
 Una vez que tenemos la llave debemos asegurarnos que el servidor de llaves SSH esté prendido. Básicamente es un programa corriendo que revisa que las llaves estén listas y que las conecte para hacer la conexión doble cuando nos conectemos a un servidor remoto o a github.
 
-_eval $(ssh-agent -s)_
+*eval $(ssh-agent -s)*
 
 El resultado debe ser el siguiente:
 
@@ -227,7 +227,7 @@ Después de creada tenemos que agregarla al servidor.
 
 para agregar la llave usamos el siguiente comando:
 
-_ssh-add ~/.ssh/id_rsa_
+*ssh-add ~/.ssh/id_rsa*
 
 Estamos agregando la llave privada, al darle enter nos debe mostrar un mensaje que diga Identity added seguido de la ruta y el correo del usuario.
 
@@ -237,13 +237,14 @@ El procedimiento en Mac es diferente.
 
 Después de ejecutar el comando en la terminal para crear las llaves, hay que agregarlas al servidor ssh, pimero asgurandonos que el servidor SSH está corriendo:
 
-_eval "$(ssh-agent -s)"_
+*eval "$(ssh-agent -s)"*
 
 En Mac tenemos que aseguarnos de que exista el archivo .config dentro del direcorio .ssh si no existe hay que crearlo.
 
 El contenido del archivo debe ser el siguiente:
 
 ```
+
 Host *
 
   AddKeysToAgent yes
@@ -251,11 +252,12 @@ Host *
   IdentityFile ~/.ssh/id_rsa
 
 ```
+
 Se guarda sin extensión.
 
 Despues volvemos al home y ejecutamos el siguiente comando:
 
-_ssh_add -K ~/.ssh/id_rsa_
+*ssh_add -K ~/.ssh/id_rsa*
 
 Nos debe mostrar el mensaje de *Identity added*
 
@@ -273,3 +275,28 @@ Te mostrará dos campos en uno te pedira un tíulo para la llave, que debería s
 
 Después te debe de pedir tu contraseña de github y al ingresarla te mostrará una pantalla con tu llave agregada.
 
+>Después de esto ya pude descargar el repositorio a mi local usando el comando:
+
+>*git clone git@github.com:hugo-2306/hyperblog.git*
+
+>Al descargarlo me pidió mi passphrase.
+
+![clone_ssh](/img/clone_ssh.png)
+
+Con el comando *git remote -v*  podemos saber cual es la URL de nuestro repositorio.
+
+![remote_ssh](/img/remote_ssh.png)
+
+Vemos 2 repos por que a uno se le hace fetch y a otro push, pueden ser distintos, en general no lo son pero pueden ser.
+
+Origin es un estandar de la industria.
+
+Si queremos cambiar el URL de nuestro repositorio lo hacemos con el siguiente comando:
+
+*git remote set-url*
+
+ejemplo:
+
+git remote set-url <https://github.com/hugo-2306/hyperblog.git>
+
+después ejecutamos de nuevo git remote -v para ver el cambio.
