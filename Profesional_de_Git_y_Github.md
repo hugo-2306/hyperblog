@@ -234,3 +234,42 @@ Estamos agregando la llave privada, al darle enter nos debe mostrar un mensaje q
 ![image](https://user-images.githubusercontent.com/35672370/168206190-669b260f-1624-4028-af26-ebf3190e58d2.png)
 
 El procedimiento en Mac es diferente.
+
+Después de ejecutar el comando en la terminal para crear las llaves, hay que agregarlas al servidor ssh, pimero asgurandonos que el servidor SSH está corriendo:
+
+_eval "$(ssh-agent -s)"_
+
+En Mac tenemos que aseguarnos de que exista el archivo .config dentro del direcorio .ssh si no existe hay que crearlo.
+
+El contenido del archivo debe ser el siguiente:
+
+```
+Host *
+
+  AddKeysToAgent yes
+  UseKeyChain yes
+  IdentityFile ~/.ssh/id_rsa
+
+```
+Se guarda sin extensión.
+
+Despues volvemos al home y ejecutamos el siguiente comando:
+
+_ssh_add -K ~/.ssh/id_rsa_
+
+Nos debe mostrar el mensaje de *Identity added*
+
+el flag -K en Mac es para el Key Chain, que es una aplicación del Sistema operativo donde se guardan los nombres de usuario y contraseñas.
+
+Si al usar el flag nos da un error lo deberemos quitar.
+
+## Conexión a GitHub con SSH
+
+Cada usuario tene que tener su propia llave SSH ejemplo, si tienes 3 laptops tienes que tener 3 llaves diferentes conectadas con el repositorio.
+
+Para agregar la llave pública a git hub hay que copiar el contenido del archivo id_rsa.pub despues ir al perfil de Guthub -> Settings -> SSH and GPG keys -> New SSH key
+
+Te mostrará dos campos en uno te pedira un tíulo para la llave, que debería ser una referencia al equipo al que estará conectada, y en el otro campo debes pegar la llave.
+
+Después te debe de pedir tu contraseña de github y al ingresarla te mostrará una pantalla con tu llave agregada.
+
