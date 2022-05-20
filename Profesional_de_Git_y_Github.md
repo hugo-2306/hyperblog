@@ -52,13 +52,13 @@ git init: inicializa un repositorio de GIT en la carpeta donde se ejecute el com
 
 git add: añade los archivos especificados al área de preparación (staging).
 
-git commit -m “commit description”: confirma los archivos que se encuentran en el área de preparación y los agrega al repositorio.
+git commit -m “commit description”: confirma los archivos que se encuentran en el área de preparación y los agrega al repositorio, el flag *-m* es para agregar un comentario que nos sirva de referencia hacia ese commit.
 
 git commit -am “commit description”: añade al staging area y hace un commit mediante un solo comando. (No funciona con archivos nuevos)
 
 git status: ofrece una descripción del estado de los archivos (untracked, ready to commit, nothing to commit).
 
-git rm (. -r, filename) (–cached): remueve los archivos del index.
+git rm (. -r, filename) (--cached): remueve los archivos del index. cached significa que está en memoria ram ósea aún no está guardado en la base de datos.
 
 git config --global user.email.tu@email.com: configura un email.
 
@@ -68,7 +68,7 @@ git config --list: lista las configuraciones.
 
 ## ¿Qué es staging, repositorios y cuál es el ciclo básico de trabajo en GitHub?
 
-Para iniciar un repositorio, o sea, activar el sistema de control de versiones de Git en tu proyecto, solo debes ejecutar el comando: git init (git espacio init) desde la terminal situado en el directorio de tu proyecto.
+Para iniciar un repositorio, o sea, activar el sistema de control de versiones de Git en tu proyecto, solo debes ejecutar el comando: *git init* (git espacio init) desde la terminal situado en el directorio de tu proyecto.
 
 Este comando se encargará de dos cosas: primero, crear una carpeta .git donde se guardará toda la base de datos con *cambios atómicos* de nuestro proyecto; y segundo, crear un área en la memoria RAM, que conocemos como Staging, que guardará temporalmente nuestros archivos (cuando ejecutemos un comando especial para eso) y nos permitirá, más adelante, guardar estos cambios en el repositorio (también con un comando especial).
 
@@ -80,6 +80,7 @@ Cuando trabajamos con Git, nuestros archivos pueden vivir y moverse entre 4 dife
 - **Archivos Staged:** Son archivos en Staging. Viven dentro de Git y hay registro de ellos porque han sido afectados por el comando *git add*, aunque no sus últimos cambios. Git ya sabe de la existencia de estos últimos cambios pero todavía no han sido guardados definitivamente en el repositorio porque *falta ejecutar* el comando *git commit*.
 - **Archivos Unstaged:** Entiendelos como archivos “Tracked pero Unstaged”. Son archivos que viven dentro de Git pero *no* han sido *afectados* por el comando *git add* *ni* mucho menos por *git commit*. Git tiene un registro de estos archivos pero está desactualizado, sus últimas versiones solo están guardadas en el disco duro.
 - **Archivos Untracked:** Son archivos que *NO viven dentro de Git*, solo en el disco duro. Nunca han sido afectados por git add, así que Git no tiene registros de su existencia.
+
 Recuerda que hay un caso muy raro donde los archivos tienen dos estados al mismo tiempo: Staged y Untracked. Esto pasa cuando guardas los cambios de un archivo en el área de Staging (con el comando git add) pero, antes de hacer commit para guardar los cambios en el repositorio, haces nuevos cambios que todavía no han sido guardados en el área de Staging (en realidad, todo sigue funcionando igual pero es un poco divertido).
 
 **Comandos para mover archivos entre los estados de Git:**
@@ -98,19 +99,22 @@ Recuerda que hay un caso muy raro donde los archivos tienen dos estados al mismo
   - git config --global user.name "User Name": Configura el usuario de git
   - git config --global user.email "User email": Configura el correo del usuario de git
 
+> cuando se usa -- se debe poner el nombre completo del parámetro, cuándo se una un solo - se debe usar el modo abreviado.
+
 - **git log** Muestra los cambios en el archivo *git log fileName*
                 git log --stat: cambios especificos en los archivos a partir del comit.
 
 - **git show** Muestra los cambios que han existido en un archivo *git show filename*
 - **git diff** Compara una version vs otra del archivo *git diff version1 version2* (para ver las versiones primero ejecutar *git log*)
                 También funciona para comparar cambios hechos a un archivo antes de hacer git add
-**Volver en el tiempo en nuestro repositorio utilizando branches y checkout**
+
+## Volver en el tiempo en nuestro repositorio utilizando branches y checkout
 
 Recordemos que tenemos directorio de trabajo, un stagging y un repositorio
 que es el que tiene todos los cambios.
 
 - **git reset** Nos permite volver a una verison anterior si le colocamos enfrente la versión aterior a la que queremos volver ej. *git reset 897e...873*
-    -git reset --hard: *todo* vuelve al estado anterior (cuidado)
+    -git reset --hard: *todo* vuelve al estado anterior (cuidado borra el hitorial de cambios)
     -git reset --soft: volvemos a la version anterior pero lo que esté en staging sigue en staging.
 
 - **git checkout** Nos permite revisar una version anterior de algún archivo ej.                *git checkout a132(version)...224 nombrearchivo.txt*  En este momento el archivo vuelve a la versión solicitada y si se hace un commit se perdería la información de la versión más reciente, para volver a la versión mas reciente ejecutamos el comando *git chekcout master nombrearchivo.txt*
