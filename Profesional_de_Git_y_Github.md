@@ -149,12 +149,14 @@ La cabecera o HEAD representan la rama y el commit de esa rama donde estamos tra
 *git branch nombreDeLaRama* ej git branch cabecera
     también podemos saber en que rama estamos *git branch*
 
--**git checkout** Con este comando nos cambiamos de la rama master a la rama que queremos y viceversa.
+- **git show:** Con este comando podemos saber hacia que rama está apuntando el **HEAD**.
+
+- **git checkout** Con este comando nos cambiamos de la rama master a la rama que queremos y viceversa.
 *git checkout nombreDeLaRama* ej git chekout cabecera
 El bash cambia de (master) a (nombreDeLaRama)
 Con Git status puedes revisar la rama en la que te encuentras trabajando.
 
--**git merge** Con este comando fusionamos la rama alterna y la rama master. Lo debemos hacer desde master. Este comando es un commit por lo que también hay que agregarle un mensaje.
+- **git merge** Con este comando fusionamos la rama alterna y la rama master. Lo debemos hacer desde master. Este comando es un commit por lo que también hay que agregarle un mensaje.
 
 Una vez fusionados si usamos el comando *git status* podremos ver los commits de master y el último commit del branch que fusionamos y el commit más reciente será la fusión de estos dos. Merge: 43b23b 535n3i
 
