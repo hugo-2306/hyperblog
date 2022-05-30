@@ -158,11 +158,35 @@ Con Git status puedes revisar la rama en la que te encuentras trabajando. Es imp
 
 - **git merge** Con este comando fusionamos la rama alterna y la rama master. Lo debemos hacer desde master. Este comando es un commit por lo que también hay que agregarle un mensaje.
 
+> *git merge nombre_de_la_rama*
+
 Una vez fusionados si usamos el comando *git status* podremos ver los commits de master y el último commit del branch que fusionamos y el commit más reciente será la fusión de estos dos. Merge: 43b23b 535n3i
 
-## Solución de Conflictos al hacer un merge
+## Resolución de Conflictos al hacer un merge
+
+Git nunca borra nada, a menos que nosotros se lo indiquemos. Cuando usamos los comandos git merge o git checkout estamos cambiando de rama o creando un nuevo commit, no borrando ramas ni commits (recuerda que puedes borrar commits con git reset y ramas con git branch -d).
+
+Git es muy inteligente y puede resolver algunos conflictos automáticamente: cambios, nuevas líneas, entre otros. Pero algunas veces no sabe cómo resolver estas diferencias, por ejemplo, cuando dos ramas diferentes hacen cambios distintos a una misma línea.
+
+Esto lo conocemos como conflicto y lo podemos resolver manualmente. Solo debemos hacer el merge, ir a nuestro editor de código y elegir si queremos quedarnos con alguna de estas dos versiones o algo diferente. Algunos editores de código como Visual Studio Code nos ayudan a resolver estos conflictos sin necesidad de borrar o escribir líneas de texto, basta con hacer clic en un botón y guardar el archivo.
+
+Recuerda que siempre debemos crear un nuevo commit para aplicar los cambios del merge. Si Git puede resolver el conflicto, hará commit automáticamente. Pero, en caso de no pueda resolverlo, debemos solucionarlo y hacer el commit.
 
 Los archivos con conflictos por el comando *git merge* entran en un nuevo estado que conocemos como Unmerged. Funcionan muy parecido a los archivos en estado Unstaged, algo así como un estado intermedio entre Untracked y Unstaged, solo debemos ejecutar git add para pasarlos al área de staging y git commit para aplicar los cambios en el repositorio.
+
+### Cómo revertir un merge
+
+Si nos hemos equivocado y queremos cancelar el merge, debemos usar el siguiente comando:
+
+> *git merge --abort*
+
+### Conflictos en repositorios remotos
+
+Al trabajar con otras personas, es necesario utilizar un repositorio remoto.
+­
+-Para copiar el repositorio remoto al directorio de trabajo local, se utiliza el comando *git clone \<url\>*, y para enviar cambios al repositorio remoto se utiliza *git push*.
+
+-Para actualizar el repositorio local se hace uso del comando *git fetch*, luego se debe fusionar los datos traídos con los locales usando *git merge*.
 
 ## Uso de GitHub
 
