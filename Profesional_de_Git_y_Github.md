@@ -188,6 +188,14 @@ Al trabajar con otras personas, es necesario utilizar un repositorio remoto.
 
 -Para actualizar el repositorio local se hace uso del comando *git fetch*, luego se debe fusionar los datos traídos con los locales usando *git merge*.
 
+## Cambios en GitHub: de master a main
+
+Desde el 1 de octubre de 2020 GitHub cambió el nombre de la rama principal: ya no es “master” (cómo aprenderás en el curso) sino main.
+
+Este derivado de una profunda reflexión ocasionada por el movimiento #BlackLivesMatter.
+
+La industria de la tecnología lleva muchos años usando términos como master, slave, blacklist o whitelist y esperamos pronto puedan ir desapareciendo.
+
 ## Uso de GitHub
 
 *GitHub* es una plataforma que nos permite guardar repositorios de Git que podemos usar como servidores remotos y ejecutar algunos comandos de forma visual e interactiva (sin necesidad de la consola de comandos).
@@ -198,22 +206,52 @@ El *README.md* es el archivo que veremos por defecto al entrar a un repositorio.
 
 Para clonar un repositorio desde GitHub (o cualquier otro servidor remoto) debemos copiar la URL (por ahora, usando HTTPS) y ejecutar el comando git clone + la URL que acabamos de copiar. Esto descargara la versión de nuestro proyecto que se encuentra en GitHub.
 
-Sin embargo, esto solo funciona para las personas que quieren empezar a contribuir en el proyecto. Si queremos conectar el repositorio de GitHub con nuestro repositorio local, el que creamos con git init, debemos ejecutar las siguientes instrucciones:
+Sin embargo, esto solo funciona para las personas que quieren empezar a contribuir en el proyecto.
 
-- Primero: Guardar la URL del repositorio de GitHub con el nombre de origin:
+### Cómo conectar un repositorio de Github a nuestro documento local
+
+Si queremos conectar el repositorio de GitHub con nuestro repositorio local, el que creamos con git init, debemos ejecutar las siguientes instrucciones:
+
+- Primero: Crear un nuevo repositorio en Github:
+  
+  - Nombre
+
+  - Descripción
+
+  - Público o Privado
+
+  - Iniciar el repositorio con un Readme.md es una buena pŕactica para indicar de que trata el repositorio o tu proyecto.
+
+  - Copiar la URL del proyecto dando click en clone or download: Clone with HTTPS (por ahora).
+
+  - En la terminal dentro de la rama master hay que indicarle a Git que vamos a agregar un *origen remoto* de nuestros archivos (la URL del repositorio de GitHub que acabamos de copiar):
 
     > *git remote add origin URL*
 
 - Segundo: Verificar que la URL se haya guardado correctamente:
 
-    >*git remote* *git remote -v*
+    > *git remote*
 
-- Tercero: Traer la versión del repositorio remoto y hacer merge para crear un commit con los archivos de ambas partes. Podemos usar git fetch y git mergeo solo el git pull con el flag *--allow-unrelated-histories*:
+    >  Origin
+  
+    > *git remote -v*
 
-    >*git pull origin master* *--allow-unrelated-histories*
+    > origin  git@github.com:hugo-2306/hyperblog.git (fetch)
+    > origin  git@github.com:hugo-2306/hyperblog.git (push)
+
+Ahora tenemos un origin para hacer fetch ("traer cosas") y push ("enviar cosas").
+
+- Tercero: Traer la versión del repositorio remoto (que en este momento solo tiene el Readme.md) y hacer merge para crear un commit con los archivos de ambas partes. Podemos usar *git fetch* y *git merge* o solo el *git pull* con el flag *--allow-unrelated-histories*:
+
+    > *git pull origin master* *--allow-unrelated-histories*
+
+Nota: las historias son los commits.
 
 - Por último, ahora sí podemos hacer git push para guardar los cambios de nuestro repositorio local en GitHub:
-    >*git push origin master*
+
+    > *git push origin master*
+
+Esta instrucción se lee cómo: git envía a origen la rama master.
 
 ## Configura tus llaves SSH en local
 
