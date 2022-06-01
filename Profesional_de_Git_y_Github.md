@@ -253,11 +253,35 @@ Nota: las historias son los commits.
 
 Esta instrucción se lee cómo: git envía a origen la rama master.
 
+## Cómo funcionan las llaves públicas y privadas
+
+Las llaves públicas y privadas, conocidas también como cifrado asimétrico de un solo camino, sirven para mandar mensajes privados entre varios nodos con la lógica de que firmas tu mensaje con una llave pública vinculada con una llave privada que puede leer el mensaje.
+
+Las llaves públicas y privadas nos ayudan a cifrar y descifrar nuestros archivos de forma que los podamos compartir sin correr el riesgo de que sean interceptados.
+
+### Cómo funciona un mensaje cifrado con llaves públicas y privadas
+
+1. Ambas personas deben crear su llave pública y privada.
+
+2. Ambas personas pueden compartir su llave pública a las otras partes (recuerda que esta llave es pública, no hay problema si la “interceptan”).
+
+3. La persona que quiere compartir un mensaje puede usar la llave pública de la otra persona para cifrar los archivos y asegurarse que solo puedan ser descifrados con la llave privada de la persona con la que queremos compartir el mensaje.
+
+4. El mensaje está cifrado y puede ser enviado a la otra persona sin problemas en caso de que los archivos sean interceptados.
+
+5. La persona a la que enviamos el mensaje cifrado puede emplear su llave privada para descifrar el mensaje y ver los archivos.
+
+Nota: puedes compartir tu llave pública, pero nunca tu llave privada.
+
 ## Configura tus llaves SSH en local
 
-Revisar que el usuario tenga la configuración correcta:
+Revisar que el usuariode git este configurado:
 
 - *git config -l*
+
+Si no lo está se configura con el comand: *git config --global user.email "email.usuario@email.com"*
+
+> user.email=email.usuario@email.com
 
 El correo debe ser el correcto, el nombre de usuario no importa tanto.
 
@@ -337,9 +361,9 @@ Si al usar el flag nos da un error lo deberemos quitar.
 
 Cada usuario tene que tener su propia llave SSH ejemplo, si tienes 3 laptops tienes que tener 3 llaves diferentes conectadas con el repositorio.
 
-Para agregar la llave pública a git hub hay que copiar el contenido del archivo id_rsa.pub despues ir al perfil de Guthub -> Settings -> SSH and GPG keys -> New SSH key
+Para agregar la llave pública a git hub hay que copiar el contenido del archivo id_rsa.pub despues ir al perfil de Github -> Settings -> SSH and GPG keys -> New SSH key
 
-Te mostrará dos campos en uno te pedira un tíulo para la llave, que debería ser una referencia al equipo al que estará conectada, y en el otro campo debes pegar la llave.
+Te mostrará dos campos en uno te pedira un título para la llave, que debería ser una referencia al equipo al que estará conectada, y en el otro campo debes pegar la llave.
 
 Después te debe de pedir tu contraseña de github y al ingresarla te mostrará una pantalla con tu llave agregada.
 
@@ -361,10 +385,14 @@ Origin es un estandar de la industria.
 
 Si queremos cambiar el URL de nuestro repositorio lo hacemos con el siguiente comando:
 
-*git remote set-url*
+*git remote set-url origin*
 
 ejemplo:
 
-git remote set-url <https://github.com/hugo-2306/hyperblog.git>
+git remote set-url origin <https://github.com/hugo-2306/hyperblog.git>
+
+o para ssh
+
+git remote set-url origin <git@github.com:hugo-2306/hyperblog.git>
 
 después ejecutamos de nuevo git remote -v para ver el cambio.
