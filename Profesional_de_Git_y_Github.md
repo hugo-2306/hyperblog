@@ -393,6 +393,8 @@ git remote set-url origin <https://github.com/hugo-2306/hyperblog.git>
 
 o para ssh
 
-git remote set-url origin <git@github.com:hugo-2306/hyperblog.git>
+git remote set-url origin git@github.com:hugo-2306/hyperblog.git
 
 después ejecutamos de nuevo git remote -v para ver el cambio.
+
+El comando *git pull origin master* lo deberiamos ejecutar antes de hacer un push para verificar que no haya cambiado nada en origin y que estamos trabajando con la versión más actualizada del código.
