@@ -398,3 +398,51 @@ git remote set-url origin git@github.com:hugo-2306/hyperblog.git
 después ejecutamos de nuevo git remote -v para ver el cambio.
 
 El comando *git pull origin master* lo deberiamos ejecutar antes de hacer un push para verificar que no haya cambiado nada en origin y que estamos trabajando con la versión más actualizada del código.
+
+## Tags y versiones en Git y GitHub
+
+Los tags o etiquetas nos permiten asignar versiones a los commits con cambios más importantes o significativos de nuestro proyecto.
+
+Para ver toda la historia de nuestro proyecto de un modo gráfico en la terminal podemos usar el siguiente comando:
+
+> *git log --all --graph --decorate --oneline*
+
+![git__log_graph](/img/git_log_graph.png)
+
+Para no tener que memorizar todos los parámetros podemos usar un alias de git y configurarlo de modo global para que esté disponible en todos los proyectos, se hace de la siguiente manera:
+
+> *git config --global alias.greatlog "log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"*
+
+para ejecutarlo la siguiente vez solo tendremos que escribir:
+
+> *git greatlog*
+
+Ya que indetificamos en que commit queremos agregar el tag podemos crearlo de la siguiente manera, primero hay que copiar el hash del commit y después ejecutar el siguiente comando:
+
+> *git tag -a v0.1 -m "Resultado de las primeras clases del curso" hashdelcommit*
+
+El flag **-a** indica que se va a agregar un tag y seguido de esta ponemos un nombre, por convención se pone una **v** y la versión en este caso la 0.1
+
+Después hay que agregar un mensaje tal cómo si fuera un commit y seguido del mensaje hay que colocar el hash del commit. Listo ya quedó creado el tag.
+
+Para listar los tags podemos escribir:
+
+> *git tag*
+
+Si queremos conocer a que hash o que commit está conectado el hash deberemos escrbir el siguiente comando:
+
+> git show-ref -- tags
+
+Los tags no se registran como cambios para enviar el servidor sin embargo la idea es que los demás desarrolladores puedan tener una referencia.
+
+Para enviarlos usamos el siguiente comando:
+
+> *git push origin --tags*
+
+Para borrar un tag se usa el siguiente comando:
+
+> *git tag -d nombre-del-tag*
+
+Después para borrarlo del repositorio remoto se puede usar la interfaz gráfica desde github o ejecutar el siguiente comando:
+
+> *git push origin :refs/tags/nombre-del-tag*
