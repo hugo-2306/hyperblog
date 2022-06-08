@@ -431,7 +431,7 @@ Para listar los tags podemos escribir:
 
 Si queremos conocer a que hash o que commit está conectado el hash deberemos escrbir el siguiente comando:
 
-> git show-ref -- tags
+> *git show-ref -- tags*
 
 Los tags no se registran como cambios para enviar el servidor sin embargo la idea es que los demás desarrolladores puedan tener una referencia.
 
@@ -446,3 +446,27 @@ Para borrar un tag se usa el siguiente comando:
 Después para borrarlo del repositorio remoto se puede usar la interfaz gráfica desde github o ejecutar el siguiente comando:
 
 > *git push origin :refs/tags/nombre-del-tag*
+
+## Manejo de ramas en GitHub
+
+Las ramas nos permiten hacer cambios a nuestros archivos sin modificar la versión principal (master). Puedes trabajar con ramas que nunca envías a GitHub, así como pueden haber ramas importantes en GitHub que nunca usas en el repositorio local. Lo importante es que aprendas a manejarlas para trabajar profesionalmente.
+
+Si, estando en otra rama, modificamos los archivos y hacemos commit, tanto el historial(git log) como los archivos serán afectados. La ventaja que tiene usar ramas es que las modificaciones solo afectarán a esa rama en particular. Si luego de “guardar” los archivos(usando commit) nos movemos a otra rama (git checkout otraRama) veremos como las modificaciones de la rama pasada no aparecen en la *otraRama*.
+
+### Comandos para manejo de ramas en GitHub
+
+- Crear una rama:
+    git branch branchName
+
+- Movernos a otra rama:
+    git checkout branchName
+
+- Crear una rama en el repositorio local:
+    git branch nombre-de-la-rama o git checkout -b nombre-de-la-rama.
+
+- Publicar una rama local al repositorio remoto:
+    git push origin nombre-de-la-rama.
+
+Este último comando se ejecuta desde la rama que se va enviar a github.
+
+Recuerda que podemos ver gráficamente nuestro entorno y flujo de trabajo local con Git utilizando el comando gitk. Gitk fue el primer visor gráfico que se desarrolló para ver de manera gráfica el historial de un repositorio de Git.
