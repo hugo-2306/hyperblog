@@ -456,17 +456,40 @@ Si, estando en otra rama, modificamos los archivos y hacemos commit, tanto el hi
 ### Comandos para manejo de ramas en GitHub
 
 - Crear una rama:
-    git branch branchName
+
+    *git branch branchName*
 
 - Movernos a otra rama:
-    git checkout branchName
+
+    *git checkout branchName*
 
 - Crear una rama en el repositorio local:
-    git branch nombre-de-la-rama o git checkout -b nombre-de-la-rama.
+
+    *git branch nombre-de-la-rama* o*git checkout -b nombre-de-la-rama*
 
 - Publicar una rama local al repositorio remoto:
-    git push origin nombre-de-la-rama.
+
+    *git push origin nombre-de-la-rama*
 
 Este último comando se ejecuta desde la rama que se va enviar a github.
 
 Recuerda que podemos ver gráficamente nuestro entorno y flujo de trabajo local con Git utilizando el comando gitk. Gitk fue el primer visor gráfico que se desarrolló para ver de manera gráfica el historial de un repositorio de Git.
+
+## Configurar múltiples colaboradores en un repositorio de GitHub
+
+Por defecto, cualquier persona puede clonar o descargar tu proyecto desde GitHub, pero no pueden crear commits, ni ramas. Esto quiere decir que pueden copiar tu proyecto pero no colaborar con él. Existen varias formas de solucionar esto para poder aceptar contribuciones. Una de ellas es añadir a cada persona de nuestro equipo como colaborador de nuestro repositorio.
+
+Cómo agregar colaboradores en Github
+
+Solo debemos entrar a la configuración de colaboradores de nuestro proyecto. Se encuentra en:
+
+Repositorio > Settings > Collaborators
+Ahí, debemos añadir el email o username de los nuevos colaboradores.
+
+![add_colaborator](./img/add_colaborator.png)
+
+El nuevo colaborador **no** tiene que hacer un *git init* en la carpeta dónde va a alojar el proyecto, lo que tiene que hacer el nuevo colaborado es clonar el repositorio con el comando *git clone url_del_repositorio*
+
+Al clonar el repositorio si es público no te pedirá usuario ni contraseña.
+
+Si el nuevo colaborador intenta hacer un commit sin haber sido añadido le va a mostrar un error de permisos.
