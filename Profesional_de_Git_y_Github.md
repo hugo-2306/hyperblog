@@ -22,7 +22,7 @@ Es una plataforma de desarrollo colaborativo para alojar proyectos utilizando el
 
 Github puede considerarse como la red social de código para los programadores y en muchos casos es visto como tu curriculum vitae, pues aquí guardas tu portafolio de proyectos de programación.
 
-## Instalando Git en Linux
+### Instalando Git en Linux
 
 Cada distribución de Linux tiene un comando especial para instalar herramientas y actualizar el sistema. Aquí veremos un ejemplo de los comandos para instalar Git en Linux
 
@@ -66,7 +66,7 @@ git config --global user.name <Nombre como se verá en los commits>: configura u
 
 git config --list: lista las configuraciones.
 
-## ¿Qué es staging, repositorios y cuál es el ciclo básico de trabajo en GitHub?
+### ¿Qué es staging, repositorios y cuál es el ciclo básico de trabajo en GitHub?
 
 Para iniciar un repositorio, o sea, activar el sistema de control de versiones de Git en tu proyecto, solo debes ejecutar el comando: *git init* (git espacio init) desde la terminal situado en el directorio de tu proyecto.
 
@@ -77,8 +77,11 @@ Este comando se encargará de dos cosas: primero, crear una carpeta .git donde s
 Cuando trabajamos con Git, nuestros archivos pueden vivir y moverse entre 4 diferentes estados (cuando trabajamos con repositorios remotos pueden ser más estados pero lo estudiaremos más adelante):
 
 - **Archivos Tracked:** Son los archivos que viven dentro de Git, no tienen cambios pendientes y sus últimas actualizaciones han sido guardadas en el repositorio gracias a los comandos *git add* y *git commit*.
+
 - **Archivos Staged:** Son archivos en Staging. Viven dentro de Git y hay registro de ellos porque han sido afectados por el comando *git add*, aunque no sus últimos cambios. Git ya sabe de la existencia de estos últimos cambios pero todavía no han sido guardados definitivamente en el repositorio porque *falta ejecutar* el comando *git commit*.
+
 - **Archivos Unstaged:** Entiendelos como archivos “Tracked pero Unstaged”. Son archivos que viven dentro de Git pero *no* han sido *afectados* por el comando *git add* *ni* mucho menos por *git commit*. Git tiene un registro de estos archivos pero está desactualizado, sus últimas versiones solo están guardadas en el disco duro.
+
 - **Archivos Untracked:** Son archivos que *NO viven dentro de Git*, solo en el disco duro. Nunca han sido afectados por git add, así que Git no tiene registros de su existencia.
 
 Recuerda que hay un caso muy raro donde los archivos tienen dos estados al mismo tiempo: Staged y Untracked. Esto pasa cuando guardas los cambios de un archivo en el área de Staging (con el comando git add) pero, antes de hacer commit para guardar los cambios en el repositorio, haces nuevos cambios que todavía no han sido guardados en el área de Staging (en realidad, todo sigue funcionando igual pero es un poco divertido).
@@ -86,17 +89,27 @@ Recuerda que hay un caso muy raro donde los archivos tienen dos estados al mismo
 **Comandos para mover archivos entre los estados de Git:**
 
 - **git status:** Nos permite ver el estado de todos nuestros archivos y carpetas.
+
 - **git add:** Nos ayuda a mover archivos del Untracked o Unstaged al estado Staged. Podemos usar git nombre-del-archivo-o-carpeta para añadir archivos y carpetas individuales o git add -A para mover todos los archivos de nuestro proyecto (tanto Untrackeds como unstageds). Se puede usar el comando *git add .* para agregar el archivo modificado en el directorio actual
+
 - **git reset HEAD:** Nos ayuda a sacar archivos del estado Staged para devolverlos a su estado anterior. Si los archivos venían de Unstaged, vuelven allí. Y lo mismo se venían de Untracked.
+
 - **git commit:** Nos ayuda a mover archivos de Unstaged a Staged. Esta es una ocasión especial, los archivos han sido guardado o actualizados en el repositorio. Git nos pedirá que dejemos un mensaje para recordar los cambios que hicimos y podemos usar el argumento -m para escribirlo (git commit -m "mensaje").
+
 - **git rm:** Este comando necesita alguno de los siguientes argumentos para poder ejecutarse correctamente:
+
   - git rm --cached: Mueve los archivos que le indiquemos al estado Untracked.
+
   - git rm --force: Elimina los archivos de Git y del disco duro. Git guarda el registro de la existencia de los archivos, por lo que podremos recuperarlos si es necesario (pero debemos usar comandos más avanzados).
 
 - **git config** Muestra las opciones de configuración
+
   - git config --list: Ver la configuración por defecto de Git
+
   - git config --list --show-origin: Ubicación de las configuraciones
+
   - git config --global user.name "User Name": Configura el usuario de git
+
   - git config --global user.email "User email": Configura el correo del usuario de git
 
 > cuando se usa -- se debe poner el nombre completo del parámetro, cuándo se una un solo - se debe usar el modo abreviado.
@@ -108,16 +121,19 @@ Recuerda que hay un caso muy raro donde los archivos tienen dos estados al mismo
 - **git diff** Compara una version vs otra del archivo *git diff version1 version2* (para ver las versiones primero ejecutar *git log*)
                 También funciona para comparar cambios hechos a un archivo antes de hacer git add
 
-## Volver en el tiempo en nuestro repositorio utilizando branches y checkout
+### Volver en el tiempo en nuestro repositorio utilizando branches y checkout
 
-Recordemos que tenemos directorio de trabajo, un stagging y un repositorio
-que es el que tiene todos los cambios.
+Recordemos que tenemos directorio de trabajo, un stagging y un repositorio que es el que tiene todos los cambios.
 
 - **git reset** Nos permite volver a una verison anterior si le colocamos enfrente la versión aterior a la que queremos volver ej. *git reset 897e...873*
+
     -git reset --hard: *todo* vuelve al estado anterior (cuidado borra el hitorial de cambios)
+
     -git reset --soft: volvemos a la version anterior pero lo que esté en staging sigue en staging.
 
-- **git checkout** Nos permite revisar una version anterior de algún archivo ej.                *git checkout a132(version)...224 nombrearchivo.txt*  En este momento el archivo vuelve a la versión solicitada y si se hace un commit se perdería la información de la versión más reciente, para volver a la versión mas reciente ejecutamos el comando *git chekcout master nombrearchivo.txt*
+- **git checkout** Nos permite revisar una version anterior de algún archivo ej.                *git checkout a132(version)...224 nombrearchivo.txt*
+
+En este momento el archivo vuelve a la versión solicitada y si se hace un commit se perdería la información de la versión más reciente, para volver a la versión mas reciente ejecutamos el comando *git chekcout master nombrearchivo.txt*
 
 ## Flujo de trabajo básico con un repositorio remoto
 
@@ -130,12 +146,16 @@ Estos servidores remotos pueden estar alojados en GitHub, GitLab, BitBucket, ent
 Esto significa que debes aprender algunos nuevos comandos:
 
 - **git clone url_del_servidor_remoto:** Nos permite descargar los archivos de la última versión de la rama principal y todo el historial de cambios en la carpeta .git.
+
 - **git push:** Luego de hacer git add y git commit debemos ejecutar este comando para mandar los cambios al servidor remoto.
+
 - **git fetch:** Lo usamos para traer actualizaciones del servidor remoto y guardarlas en nuestro repositorio local (en caso de que hayan, por supuesto).
+
 - **git merge:** También usamos el comando git fetch con servidores remotos. Lo necesitamos para combinar los últimos cambios del servidor remoto y nuestro directorio de trabajo.
+
 - **git pull:** Básicamente, git fetch y git merge al mismo tiempo.
 
-## Introducción a las ramas o branches de Git
+### Introducción a las ramas o branches de Git
 
 Las ramas son la forma de hacer cambios en nuestro proyecto sin afectar el flujo de trabajo de la rama principal. Esto porque queremos trabajar una parte muy específica de la aplicación o simplemente experimentar.
 
@@ -152,7 +172,9 @@ La cabecera o HEAD representan la rama y el commit de esa rama donde estamos tra
 - **git show:** Con este comando podemos saber hacia que rama está apuntando el **HEAD**.
 
 - **git checkout** Con este comando nos cambiamos de la rama master a la rama que queremos y viceversa.
+
 *git checkout nombreDeLaRama* ej git chekout cabecera
+
 El bash cambia de (master) a (nombreDeLaRama)
 Con Git status puedes revisar la rama en la que te encuentras trabajando. Es importante recordar que si haces un cambio en alguna de las ramas o master y no haces comit antes de hacer checkout, vas a perder tus cambios.
 
@@ -162,7 +184,7 @@ Con Git status puedes revisar la rama en la que te encuentras trabajando. Es imp
 
 Una vez fusionados si usamos el comando *git status* podremos ver los commits de master y el último commit del branch que fusionamos y el commit más reciente será la fusión de estos dos. Merge: 43b23b 535n3i
 
-## Resolución de Conflictos al hacer un merge
+### Resolución de Conflictos al hacer un merge
 
 Git nunca borra nada, a menos que nosotros se lo indiquemos. Cuando usamos los comandos git merge o git checkout estamos cambiando de rama o creando un nuevo commit, no borrando ramas ni commits (recuerda que puedes borrar commits con git reset y ramas con git branch -d).
 
@@ -188,7 +210,7 @@ Al trabajar con otras personas, es necesario utilizar un repositorio remoto.
 
 -Para actualizar el repositorio local se hace uso del comando *git fetch*, luego se debe fusionar los datos traídos con los locales usando *git merge*.
 
-## Cambios en GitHub: de master a main
+### Cambios en GitHub: de master a main
 
 Desde el 1 de octubre de 2020 GitHub cambió el nombre de la rama principal: ya no es “master” (cómo aprenderás en el curso) sino main.
 
@@ -196,7 +218,7 @@ Este derivado de una profunda reflexión ocasionada por el movimiento #BlackLive
 
 La industria de la tecnología lleva muchos años usando términos como master, slave, blacklist o whitelist y esperamos pronto puedan ir desapareciendo.
 
-## Uso de GitHub
+### Uso de GitHub
 
 *GitHub* es una plataforma que nos permite guardar repositorios de Git que podemos usar como servidores remotos y ejecutar algunos comandos de forma visual e interactiva (sin necesidad de la consola de comandos).
 
@@ -233,10 +255,11 @@ Si queremos conectar el repositorio de GitHub con nuestro repositorio local, el 
     > *git remote*
 
     >  Origin
-  
+
     > *git remote -v*
 
     > origin  git@github.com:hugo-2306/hyperblog.git (fetch)
+
     > origin  git@github.com:hugo-2306/hyperblog.git (push)
 
 Ahora tenemos un origin para hacer fetch ("traer cosas") y push ("enviar cosas").
@@ -253,7 +276,7 @@ Nota: las historias son los commits.
 
 Esta instrucción se lee cómo: git envía a origen la rama master.
 
-## Cómo funcionan las llaves públicas y privadas
+### Cómo funcionan las llaves públicas y privadas
 
 Las llaves públicas y privadas, conocidas también como cifrado asimétrico de un solo camino, sirven para mandar mensajes privados entre varios nodos con la lógica de que firmas tu mensaje con una llave pública vinculada con una llave privada que puede leer el mensaje.
 
@@ -273,7 +296,7 @@ Las llaves públicas y privadas nos ayudan a cifrar y descifrar nuestros archivo
 
 Nota: puedes compartir tu llave pública, pero nunca tu llave privada.
 
-## Configura tus llaves SSH en local
+### Configura tus llaves SSH en local
 
 Revisar que el usuariode git este configurado:
 
@@ -357,7 +380,7 @@ el flag -K en Mac es para el Key Chain, que es una aplicación del Sistema opera
 
 Si al usar el flag nos da un error lo deberemos quitar.
 
-## Conexión a GitHub con SSH
+### Conexión a GitHub con SSH
 
 Cada usuario tene que tener su propia llave SSH ejemplo, si tienes 3 laptops tienes que tener 3 llaves diferentes conectadas con el repositorio.
 
@@ -399,7 +422,7 @@ después ejecutamos de nuevo git remote -v para ver el cambio.
 
 El comando *git pull origin master* lo deberiamos ejecutar antes de hacer un push para verificar que no haya cambiado nada en origin y que estamos trabajando con la versión más actualizada del código.
 
-## Tags y versiones en Git y GitHub
+### Tags y versiones en Git y GitHub
 
 Los tags o etiquetas nos permiten asignar versiones a los commits con cambios más importantes o significativos de nuestro proyecto.
 
@@ -447,7 +470,7 @@ Después para borrarlo del repositorio remoto se puede usar la interfaz gráfica
 
 > *git push origin :refs/tags/nombre-del-tag*
 
-## Manejo de ramas en GitHub
+### Manejo de ramas en GitHub
 
 Las ramas nos permiten hacer cambios a nuestros archivos sin modificar la versión principal (master). Puedes trabajar con ramas que nunca envías a GitHub, así como pueden haber ramas importantes en GitHub que nunca usas en el repositorio local. Lo importante es que aprendas a manejarlas para trabajar profesionalmente.
 
@@ -475,7 +498,7 @@ Este último comando se ejecuta desde la rama que se va enviar a github.
 
 Recuerda que podemos ver gráficamente nuestro entorno y flujo de trabajo local con Git utilizando el comando gitk. Gitk fue el primer visor gráfico que se desarrolló para ver de manera gráfica el historial de un repositorio de Git.
 
-## Configurar múltiples colaboradores en un repositorio de GitHub
+### Configurar múltiples colaboradores en un repositorio de GitHub
 
 Por defecto, cualquier persona puede clonar o descargar tu proyecto desde GitHub, pero no pueden crear commits, ni ramas. Esto quiere decir que pueden copiar tu proyecto pero no colaborar con él. Existen varias formas de solucionar esto para poder aceptar contribuciones. Una de ellas es añadir a cada persona de nuestro equipo como colaborador de nuestro repositorio.
 
@@ -493,3 +516,25 @@ El nuevo colaborador **no** tiene que hacer un *git init* en la carpeta dónde v
 Al clonar el repositorio si es público no te pedirá usuario ni contraseña.
 
 Si el nuevo colaborador intenta hacer un commit sin haber sido añadido le va a mostrar un error de permisos.
+
+## Flujos de trabajo profesionales
+
+### Flujo de trabajo profesional: Haciendo merge de ramas de desarrollo a master
+
+Para poder desarrollar software de manera óptima y ordenada, necesitamos tener un flujo de trabajo profesional, que nos permita trabajar en conjunto sin interrumpir el trabajo de otros desarrolladores. Una buena práctica de flujo de trabajo sería la siguiente:
+
+- Crear ramas
+
+- Asignar una rama a cada programador
+
+- El programador baja el repositorio con git pull origin master
+
+- El programador cambia de rama
+
+- El programador trabaja en esa rama y hace commits
+
+- El programador sube su trabajo con git push origin #nombre_rama
+
+- El encargado de organizar el proyecto baja, revisa y unifica todos los cambios.
+
+Las mejores prácticas dicen que los Binarios (en este caso imágenes) no se deben de guardar en los repoistorios.
