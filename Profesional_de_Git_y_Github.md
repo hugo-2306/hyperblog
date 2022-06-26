@@ -537,4 +537,16 @@ Para poder desarrollar software de manera óptima y ordenada, necesitamos tener 
 
 - El encargado de organizar el proyecto baja, revisa y unifica todos los cambios.
 
-Las mejores prácticas dicen que los Binarios (en este caso imágenes) no se deben de guardar en los repoistorios.
+Las mejores prácticas dicen que los Binarios (en este caso imágenes) no se deben de guardar en los repositorios.
+
+¿Como actualizo mis ramas con el código de master?
+
+De [Stackoverflow](https://stackoverflow.com/questions/3876977/update-git-branches-from-master):
+
+Merge, but this creates an extra commit for the merge.
+
+Checkout each branch: *git checkout desired_branch*
+
+Then merge: *git merge origin/master*
+
+Then push: *git push origin desired_branch*
