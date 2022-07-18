@@ -586,3 +586,49 @@ Al hacer un pull request, se genera una conversación que pueden seguir los dem�
 - Se hace merge a master desde GitHub.
 
 Importante: Cuando se modifica una rama, también se modifica el pull request.
+
+### Creando un Fork, contribuyendo a un repositorio
+
+Los **forks** o bifurcaciones son una característica única de *GitHub* en la que se crea una copia exacta del estado actual de un repositorio directamente en GitHub. Este repositorio podrá servir como otro origen y se podrá clonar (como cualquier otro repositorio). En pocas palabras, lo podremos utilizar como un nuevo repositorio git.
+
+Un fork es una bifurcación del repositorio completo. Comparte una historia en común con el original, pero se bifurca y pueden haber varios cambios, ya que ambos proyectos podrán ser modificados en paralelo. Para estar al día un colaborador tendrá que estar actualizando su fork con la información del original.
+
+Al hacer un fork de un proyecto en GitHub, te conviertes en dueñ@ del repositorio fork y puedes trabajar en este con todos los permisos, pero es un repositorio completamente diferente al original, teniendo solamente alguna historia en común (como crédito al creado o creadora original).
+
+Los forks son importantes porque es la manera en la que funciona el open source, ya que una persona puede no ser colaborador de un proyecto, pero puede contribuír al mismo, haciendo mejor software que pueda ser utilizado por cualquiera.
+
+Para hacer fork a un repositorio en github solo hay que darle click al botón de fork en el proyecto deseado y github hará la copia hacia tu perfil.
+
+Después para poder empezar a hacer cambios hay que clonarlo desde nuestro directorio de trabajo.
+
+> *git clone url-del-proyecto-en-mi-repositorio-de-github*
+
+Una vez hechos los cambios en local hago push a mi repositorio.
+
+El paso siguiente sería envíar desde mi repositorio en Github los cambios al repositorio original.
+
+Github sabe que mi repositorio es una copia de otro entonces lo que tengo que hacer es dar click en el bóton de *New pull request*, esto abrirá una nueva interfaz en Github dónde me pediran escoger que ramas deseo comparar para saber cuales son los cambios y ejecutar posteriormente el pull request, también me permite comparar entre forks.
+
+Ya que comparamos los archivos y vimos nuestros cambios podemos dar click en el botón *Create Pull Request*. Recordemos que un pull request es cómo un commit intermedio por lo que también deberemos agregar un mensaje que acompañe a nuestro commit.
+
+Después de darle click se creará una convesación en la pestaña de pull requests. En este momento el pull request se queda en espera de validación, yo tengo la opción de cerrarlo que sería como cancelar la solicitud.
+
+El dueño del repositorio original recibe una alerta de que tiene una solicitud de pull request, después de revisar el código del pull request puede dar click en el botón de Review Changes dónde podrá aprobar o solicitar algún cambio al código propuesto en el pull request.
+
+Si lo aprueba lo siguiente es hacer merge al pull request. Al hacer el merge ahora se tiene también en el historial del proyecto original los commits del proyecto clonado.
+
+Cuando el repositorio original es modificado los forks se van quedando resagados con respecto al proyecto original. Para poder traer el código más reciente del original al fork desde github se puede dar click al botón fetch upstream para que haga fetch y merge, se puede también comparar los códigos y después hacer un pull request.
+
+También se puede hacer desde consola. En la carpeta donde está el fork se debe crear otra fuente de origen del código, esto se hace con el siguiente comando:
+
+> *git remote add upstream  url-del-proyecto-original*
+
+La palabra upstream es convencional, no es obligatorio que ese sea el nombre.
+
+Al ejecutar el comando git remote -v podremos ver nuestra nueva fuente *upstream* junto con *origin*.
+
+Por último deberemos hacer pull del nuevo origen a master:
+
+> *git pull upstream master*
+
+Este pull nos traerá los cambios del remoto, por lo que se estará al día en el proyecto. El flujo de trabajo cambia, en adelante se estará trabajando haciendo pull desde upstream y push a origin para después hacer un pull request.
