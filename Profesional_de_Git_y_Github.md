@@ -631,4 +631,22 @@ Por último deberemos hacer pull del nuevo origen a master:
 
 > *git pull upstream master*
 
-Este pull nos traerá los cambios del remoto, por lo que se estará al día en el proyecto. El flujo de trabajo cambia, en adelante se estará trabajando haciendo pull desde upstream y push a origin para después hacer un pull request.
+Este pull nos traerá los cambios del remoto, por lo que se estará al día en el proyecto. *El flujo de trabajo cambia, en adelante se estará trabajando haciendo pull desde upstream y push a origin para después hacer un pull request.*
+
+### Ignorar archivos en el repositorio con .gitignore
+
+No todos los archivos que agregas a un proyecto deberían ir a un repositorio. Por ejemplo, cuando tienes un archivo donde están tus contraseñas, o archivosde configuración del entorno de desarollo que comúnmente tienen la extensión .env, o cuando te estás conectando a una base de datos; son archivos que nadie debe ver.
+
+También hay archivos que al estar en el repositorio ralentizan el proceso de desarrollo (por ejemplo: los binary large objects, blob, que tardan en descargarse)
+
+Otro tipo de archivos que se deben ignorar son los que se generan al ejecutar comandos, por ejemplo la carpeta node_modules, que genera npm al correr el comando npm install
+
+Para que no se suban estos archivos no deseados se debe crear un archivo con el nombre .gitignore en la raíz del repositorio con las reglas para los archivos que no se deberían subir: Aquí puedes ver la [sintaxis del achivo .gitignore.](https://git-scm.com/docs/gitignore)
+
+Ejemplo del conteido de un archivo .gitignore:
+
+*.jpg
+
+Con esto el archivo ignorará todos los arhivos jpg del proyecto y no los enviará al repositorio, la opción correcta para agregar este tipo de archivos es a través de un CDN.
+
+Puedes tomar ejemplos de archivos .gitignore otros proyectos open source profesionales en github, esta es la manera en la que todo el mundo aprende.
